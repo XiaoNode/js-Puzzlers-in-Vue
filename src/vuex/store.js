@@ -4,16 +4,21 @@ import Vuex from 'vuex';
 Vue.use(Vuex)
 
 const state={
-	count:1
+	count: 44,
+	rightnum: 0,
+	errornum: 0,
+	current: 1,
+	imgurl: '../assets/right.png',
+	imgStatus: 'consider',
+	showNext: false
 }
 
 const mutations={
-	add(state,n){
-		console.log("mutations");
-		state.count+=n;
+	rightAdd(state){ 
+		state.rightnum++
 	},
-	reduce(state){
-		state.count--
+	errorAdd(state){
+		state.errornum++
 	}
 }
 
@@ -23,8 +28,6 @@ const getters={
 		return state.count+=10
 	}
 }
-
-  
 
 export default new Vuex.Store({
 	state,mutations,getters

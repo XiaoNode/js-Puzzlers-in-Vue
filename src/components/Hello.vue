@@ -1,12 +1,12 @@
 <template>
-  <div class="hello col-lg-12">
+  <div class="hello">
     <img src="../assets/doyou.png" class="img-responsive center-block">
     <h2>{{ title }}</h2>
    <p v-html='hmtlp'>
    </p>
    <!-- <a class="button">start testing</a> -->
-   <a href="http://www.xuechenlei.com"><button type="button" class="btn btn-default">back blog</button></a>
-   <router-link to="item"><button type="button" class="btn btn-info">start testing</button></router-link>
+   <a href="http://www.xuechenlei.com"><button type="button" class="btn btn-default btn-lg">back blog</button></a>
+   <router-link to="item"><button type="button" class="btn btn-info btn-lg">start testing</button></router-link>
   </div>
 </template>
 
