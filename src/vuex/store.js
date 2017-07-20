@@ -4,10 +4,7 @@ import Vuex from 'vuex';
 Vue.use(Vuex)
 
 const state={
-	count:1,
-	storemsg:'this msg is from store',
-	name:'薛陈磊',
-	sex:'man'
+	count:1
 }
 
 const mutations={

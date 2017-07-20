@@ -1,22 +1,9 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
-    <h2>Essential Links</h2>
-    <ul>
-      <li><a href="https://vuejs.org" target="_blank">Core Docs</a></li>
-      <li><a href="https://forum.vuejs.org" target="_blank">Forum</a></li>
-      <li><a href="https://gitter.im/vuejs/vue" target="_blank">Gitter Chat</a></li>
-      <li><a href="https://twitter.com/vuejs" target="_blank">Twitter</a></li>
-      <br>
-      <li><a href="http://vuejs-templates.github.io/webpack/" target="_blank">Docs for This Template</a></li>
-    </ul>
-    <h2>Ecosystem</h2>
-    <ul>
-      <li><a href="http://router.vuejs.org/" target="_blank">vue-router</a></li>
-      <li><a href="http://vuex.vuejs.org/" target="_blank">vuex</a></li>
-      <li><a href="http://vue-loader.vuejs.org/" target="_blank">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank">awesome-vue</a></li>
-    </ul>
+    <h1>{{ title }}</h1>
+   <p v-html='msg'>
+   </p>
+   <a class="button">start testing</a>
   </div>
 </template>
 
@@ -25,7 +12,13 @@ export default {
   name: 'hello',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      title: 'Do you really know JavaScript? Come JavaScript Puzzlers!',
+      msg: `This is a JavaScript quiz based on the behaviour as of <a href='http://www.ecma-international.org/ecma-262/5.1/#sec-15.4.4.19' target='_blank'>ECMA 262 (5.1)</a> in a browser environment.Behaviour may be different if you try it in a node or jsc REPL, for example this and global are different at the top level of a firefox console, node repl or jsc shell. Sorry about that.
+        <br>
+        And more information can be accessed <a href='http://javascript-puzzlers.herokuapp.com/' target='_blank'>here</a>;
+        <br>
+        Are you ready? Come and start testing!
+      `
     }
   }
 }
@@ -33,21 +26,22 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1, h2 {
-  font-weight: normal;
+h1{
+  color: #EF8436;
 }
-
-ul {
-  list-style-type: none;
-  padding: 0;
+p{
+  line-height: 25px;
+  text-align:left;
 }
-
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-
-a {
-  color: #42b983;
+a.button{
+  box-sizing: border-box;
+  text-align: center;
+  background-color: #eeeeee;
+  border: solid 1px;
+  border-color: #bbb;
+  margin: 1em;
+  padding: 1em;
+  border-radius: 4px;
+  width: 200px
 }
 </style>
