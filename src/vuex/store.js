@@ -16,14 +16,14 @@ const state={
 			'title': 'What is the result of this expression? (or multiple ones)',
 			'question': '["1", "2", "3"].map(parseInt)',
 			'select': ['["1", "2", "3"]','[1, 2, 3]','[0, 1, 2]','other'],
-			 answer: '4',
+			'answer': 4,
 			'notic': 'what you actually get is [1, NaN, NaN] because parseInt takes two parameters (val, radix) and map passes 3 (element, index, array)'
 		},
 		{
 			'title': 'What is the result of this expression? (or multiple ones)',
 			'question': '[typeof null, null instanceof Object]',
 			'select': ['["object", false]','[null, false]','["object", true]','other'],
-			'answer': '1',
+			'answer': 1,
 			'notic': 'typeof will always return "object" for native non callable objects.'
 		}
 	]
@@ -42,8 +42,8 @@ const getters={
 	itemss:function (state) {  
 		return state.items.slice(state.current,state.current+1)
 	},
-	indexof:function (state) {
-		return state.items.slice(state.current,state.current+1).answer
+	answer:function (state) {  
+		return state.items.slice(state.current,state.current+1)
 	}
 }
 

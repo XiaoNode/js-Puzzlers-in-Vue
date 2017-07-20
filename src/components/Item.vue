@@ -8,7 +8,7 @@
 		<h2>{{ item.title }}</h2>
 		<code>{{ item.question }}</code>
 		<div class="buttondiv">
-			<button type="button" class="btn btn-default btn-lg" @click="selected(index+1)" v-for="(i ,index) in item.select">{{ i }}</button>	
+			<button type="button" class="btn btn-default btn-lg" @click.once="selected(index+1)" v-for="(i ,index) in item.select">{{ i }}</button>	
 		</div>
 
 		<p>{{ item.notic }}</p>
@@ -20,9 +20,10 @@
 		<div class="buttondiv">
 		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext">Next test >></button> 
 		</div>	
+		<div id="answer" v-show="false">{{ item.answer }}</div>
 	</div>
 
-	{{ indexof }}  ---
+	<!-- {{ answer }}  --- -->
 </div>
 </template>
 
@@ -39,7 +40,7 @@ export default{
 	store,
 	computed: {
 		...mapState(['count','rightnum','errornum','current','imgurl','imgStatus','showNext','items']),
-		...mapGetters(['itemss','indexof'])
+		...mapGetters(['itemss','answer'])
 	},
 	methods: {
 		...mapMutations(['rightAdd','errorAdd']),
