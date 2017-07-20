@@ -9,7 +9,7 @@ export default{
 	name: 'item',
 	data() {
 		return {
-			msg: 'sdfsd'
+			msg: 'test begin!'
 		}
 	}
 }

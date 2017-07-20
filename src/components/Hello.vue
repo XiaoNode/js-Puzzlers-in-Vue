@@ -1,11 +1,12 @@
 <template>
-  <div class="hello">
-    <img src="../assets/doyou.png">
-    <h1>{{ title }}</h1>
+  <div class="hello col-lg-12">
+    <img src="../assets/doyou.png" class="img-responsive center-block">
+    <h2>{{ title }}</h2>
    <p v-html='hmtlp'>
    </p>
    <!-- <a class="button">start testing</a> -->
-   <router-link to="item" class="button">start testing</router-link>
+   <a href="http://www.xuechenlei.com"><button type="button" class="btn btn-default">back blog</button></a>
+   <router-link to="item"><button type="button" class="btn btn-info">start testing</button></router-link>
   </div>
 </template>
 
@@ -28,23 +29,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h1{
+h2{
   color: #EF8436;
 }
 p{
-  line-height: 35px;
-  text-align:left;
-}
-a{ text-decoration: none; }
-a.button{
-  box-sizing: border-box;
-  text-align: center;
-  background-color: #eeeeee;
-  border: solid 1px;
-  border-color: #bbb;
-  margin: 1em;
-  padding: 1em;
-  border-radius: 4px;
-  width: 200px
-}
+  line-height: 35px; font-size: 18px;
+} 
+{ text-decoration: none; }
+
 </style>
