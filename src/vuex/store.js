@@ -43,7 +43,7 @@ const getters={
 		return state.items.slice(state.current,state.current+1)
 	},
 	answer:function (state) {  
-		return state.items.slice(state.current,state.current+1)
+		return state.items[state.current].answer
 	}
 }
 

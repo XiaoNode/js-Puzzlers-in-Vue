@@ -19,11 +19,10 @@
 
 		<div class="buttondiv">
 		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext">Next test >></button> 
-		</div>	
-		<div id="answer" v-show="false">{{ item.answer }}</div>
+		</div>	 
 	</div>
 
-	<!-- {{ answer }}  --- -->
+	{{ answer }}  ---
 </div>
 </template>
 
