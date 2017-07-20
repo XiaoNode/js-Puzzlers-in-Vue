@@ -8,7 +8,7 @@
 		<h2>{{ item.title }}</h2>
 		<code>{{ item.question }}</code>
 		<div class="buttondiv">
-			<button type="button" class="btn btn-default btn-lg" @click.once="selected(index+1)" v-for="(i ,index) in item.select">{{ i }}</button>	
+			<button type="button" class="btn btn-default btn-lg" @click.once="selected(index+1,e)" v-for="(i ,index) in item.select">{{ i }}</button>	
 		</div>
 
 		<p>{{ item.notic }}</p>
@@ -18,11 +18,11 @@
 		<img src="../assets/error.png" class="img-responsive center-block" v-if="imgStatus=='error'">
 
 		<div class="buttondiv">
-		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext">Next test >></button> 
+		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext" @click="nextPage">Next test >></button> 
 		</div>	 
 	</div>
 
-	{{ answer }}  ---
+	{{ imgStatus }}
 </div>
 </template>
 
@@ -42,12 +42,23 @@ export default{
 		...mapGetters(['itemss','answer'])
 	},
 	methods: {
-		...mapMutations(['rightAdd','errorAdd']),
-		add(){
+		...mapMutations(['rightAdd','errorAdd','changeErrorImg','changeShowNext','nextpage']),
+		add: function(){
 			this.$store.commit('rightAdd')
 		},
-		selected(index){
-			console.log(index);
+		selected: function(index){
+			if(index==this.answer){
+				this.changeErrorImg({text:'right'});
+				this.changeShowNext();
+				this.rightAdd();
+			}else{
+				this.changeErrorImg({text:'error'});
+				this.errorAdd();
+			}
+		},
+		nextPage: function(){
+			this.nextpage();
+			this.changeErrorImg({text:'consider'})
 		}
 	}
 }

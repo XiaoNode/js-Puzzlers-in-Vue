@@ -33,8 +33,17 @@ const mutations={
 	rightAdd(state){ 
 		state.rightnum++
 	},
-	errorAdd(state){
+	errorAdd (state){
 		state.errornum++
+	},
+	changeErrorImg (state,{text}){
+		state.imgStatus=text; 
+	},
+	changeShowNext (state){
+		state.showNext=!state.showNext
+	},
+	nextpage (){
+		state.current++;
 	}
 }
 
