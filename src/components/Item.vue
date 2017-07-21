@@ -8,10 +8,10 @@
 		<h2>{{ item.title }}</h2>
 		<code>{{ item.question }}</code>
 		<div class="buttondiv">
-			<button type="button" class="btn btn-default btn-lg" @click.once="selected(index+1,e)" v-for="(i ,index) in item.select">{{ i }}</button>	
+			<button type="button" class="btn btn-default btn-lg" @click="selected(index+1)" v-for="(i ,index) in item.select">{{ i }}</button>	
 		</div>
 
-		<p>{{ item.notic }}</p>
+		<p v-if="isselectright">{{ item.notic }}</p>
 
 		<img src="../assets/consider.png" class="img-responsive center-block" v-if="imgStatus=='consider'">
 		<img src="../assets/right.png" class="img-responsive center-block" v-if="imgStatus=='right'">
@@ -20,9 +20,8 @@
 		<div class="buttondiv">
 		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext" @click="nextPage">Next test >></button> 
 		</div>	 
-	</div>
-
-	{{ imgStatus }}
+		isselected:{{isselected}},  isselectright:{{isselectright}}
+	</div> 
 </div>
 </template>
 
@@ -39,26 +38,45 @@ export default{
 	store,
 	computed: {
 		...mapState(['count','rightnum','errornum','current','imgurl','imgStatus','showNext','items']),
-		...mapGetters(['itemss','answer'])
+		...mapGetters(['itemss','answer','isselected','isselectright'])
 	},
 	methods: {
-		...mapMutations(['rightAdd','errorAdd','changeErrorImg','changeShowNext','nextpage']),
+		...mapMutations(['rightAdd','errorAdd','changeErrorImg','changeShowNext','nextpage','changeSelected','changeSelectright']),
 		add: function(){
 			this.$store.commit('rightAdd')
 		},
 		selected: function(index){
-			if(index==this.answer){
-				this.changeErrorImg({text:'right'});
-				this.changeShowNext();
-				this.rightAdd();
+			// not selected any option
+			if(this.isselected==false){
+				if(index==this.answer){
+					this.changeErrorImg({text:'right'});
+					this.changeShowNext();
+					this.rightAdd();
+					this.changeSelected();
+					this.changeSelectright();
+				}else{
+					this.changeErrorImg({text:'error'});
+					this.errorAdd();
+					this.changeSelected();
+				}
 			}else{
-				this.changeErrorImg({text:'error'});
-				this.errorAdd();
-			}
+				// not select right
+				if(this.isselectright==false){
+					if(index==this.answer){
+						this.changeShowNext();
+						
+						this.changeSelected();
+						this.changeSelectright();						
+					}
+				}else{
+					this.changeSelected();
+				}
+			}  
 		},
 		nextPage: function(){
 			this.nextpage();
-			this.changeErrorImg({text:'consider'})
+			this.changeErrorImg({text:'consider'});
+			this.changeShowNext();
 		}
 	}
 }

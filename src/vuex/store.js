@@ -17,15 +17,28 @@ const state={
 			'question': '["1", "2", "3"].map(parseInt)',
 			'select': ['["1", "2", "3"]','[1, 2, 3]','[0, 1, 2]','other'],
 			'answer': 4,
-			'notic': 'what you actually get is [1, NaN, NaN] because parseInt takes two parameters (val, radix) and map passes 3 (element, index, array)'
+			'notic': 'what you actually get is [1, NaN, NaN] because parseInt takes two parameters (val, radix) and map passes 3 (element, index, array)',
+			'selected': false,
+			'selectright': false
 		},
 		{
 			'title': 'What is the result of this expression? (or multiple ones)',
 			'question': '[typeof null, null instanceof Object]',
 			'select': ['["object", false]','[null, false]','["object", true]','other'],
 			'answer': 1,
-			'notic': 'typeof will always return "object" for native non callable objects.'
-		}
+			'notic': 'typeof will always return "object" for native non callable objects.',
+			'selected': false,
+			'selectright': false
+		},
+		{
+			'title': 'What is the result of this expression? (or multiple ones)',
+			'question': '[ [3,2,1].reduce(Math.pow), [].reduce(Math.pow) ]',
+			'select': ['an error','[9, 0]','[9, NaN]','[9, undefined]'],
+			'answer': 1,
+			'notic': 'Per spec: reduce on an empty array without an initial value throws TypeError',
+			'selected': false,
+			'selectright': false
+		}		
 	]
 }
 
@@ -42,6 +55,12 @@ const mutations={
 	changeShowNext (state){
 		state.showNext=!state.showNext
 	},
+	changeSelected (state){
+		state.items[state.current].selected=true
+	},
+	changeSelectright (state){
+		state.items[state.current].selectright=true
+	},	
 	nextpage (){
 		state.current++;
 	}
@@ -53,6 +72,12 @@ const getters={
 	},
 	answer:function (state) {  
 		return state.items[state.current].answer
+	},
+	isselected: function (state) {
+		return state.items[state.current].selected	
+	},
+	isselectright: function (state) {
+		return state.items[state.current].selectright	
 	}
 }
 
