@@ -43,42 +43,22 @@ const state={
 }
 
 const mutations={
-	rightAdd(state){ 
-		state.rightnum++
-	},
-	errorAdd (state){
-		state.errornum++
-	},
-	changeErrorImg (state,{text}){
+	rightAdd: state => state.rightnum++,
+	errorAdd: state => state.errornum++, 
+	changeErrorImg: (state,{text})=>{
 		state.imgStatus=text; 
 	},
-	changeShowNext (state){
-		state.showNext=!state.showNext
-	},
-	changeSelected (state){
-		state.items[state.current].selected=true
-	},
-	changeSelectright (state){
-		state.items[state.current].selectright=true
-	},	
-	nextpage (){
-		state.current++;
-	}
+	changeShowNext: state => state.showNext=!state.showNext,
+ 	changeSelected: state => state.items[state.current].selected=true,
+ 	changeSelectright: state => state.items[state.current].selectright=true,
+	nextpage: state => state.current++
 }
 
 const getters={
-	itemss:function (state) {  
-		return state.items.slice(state.current,state.current+1)
-	},
-	answer:function (state) {  
-		return state.items[state.current].answer
-	},
-	isselected: function (state) {
-		return state.items[state.current].selected	
-	},
-	isselectright: function (state) {
-		return state.items[state.current].selectright	
-	}
+	itemss: state => state.items.slice(state.current,state.current+1),
+	answer: state => state.items[state.current].answer,
+	isselected: state => state.items[state.current].selected,
+	isselectright: state => state.items[state.current].selectright
 }
 
 export default new Vuex.Store({
