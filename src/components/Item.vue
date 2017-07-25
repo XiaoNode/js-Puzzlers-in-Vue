@@ -84,7 +84,7 @@ export default{
 			this.nextpage();
 			this.changeErrorImg({text:'consider'});
 			this.changeShowNext();
-			
+			document.getElementsByClassName("bt").className="sdfsd"
 		}
 	}
 }
