@@ -1,7 +1,7 @@
 <template>
 <div>
 	<div class="toptic">
-		<h1>Correct: {{rightnum}} / Error: {{errornum}} of {{count}}</h1>
+		<h1>Total process: {{rightnum + errornum}} of {{count}}</h1>
 	</div> 
 
 	<div v-for="item in itemss">
@@ -14,11 +14,11 @@
 			</button>	
 		</div>
 
-		<p v-if="isselectright" class="bg-info" v-html="item.notic"> </p>
-
 		<img src="../assets/consider.gif" class="img-responsive center-block" v-if="imgStatus=='consider'">
 		<img src="../assets/right.gif" class="img-responsive center-block" v-if="imgStatus=='right'">
 		<img src="../assets/error.gif" class="img-responsive center-block" v-if="imgStatus=='error'">
+		
+		<p v-if="isselectright" class="bg-info" v-html="item.notic"> </p>		
 
 		<div class="buttondiv">
 		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext" @click="nextPage">Next test >></button> 
@@ -98,7 +98,7 @@ export default{
 </script>
 
 <style>
-.toptic{float: right }
+.toptic{float: right; color: #F47A52;}
 h2{ margin-bottom: 30px }
 pre{ font-size: 160%; color: #f92659 }
 .buttondiv{ margin: 30px 0 }

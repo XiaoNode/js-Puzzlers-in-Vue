@@ -8,7 +8,7 @@
 			<p>
 			  Wow ! The correct rate of your test is {{ result }}%
 			</p>
-			<button type="button" class="btn btn-primary btn-lg fr" @click="goTest">Do again  \(≧▽≦)/</button> 
+			<button type="button" class="btn btn-default btn-lg fr" @click="goHome">Back to　Blog</button> <button type="button" class="btn btn-primary btn-lg fr" @click="goTest">Do again  \(≧▽≦)/</button> 
 		</div>
 	</div>
 </template>
@@ -26,6 +26,9 @@ export default{
 		goTest: function() {
 			//this.$router.push({ path: '/item' }); 
 			window.location.hash="#item"
+		},
+		goHome: function() {
+			window.location.href="http://www.xuechenlei.com"
 		}
 	}
 	
