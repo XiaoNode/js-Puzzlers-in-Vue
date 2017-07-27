@@ -1,12 +1,12 @@
 <template>
 <div>
 	<div class="toptic">
-		<h1>{{rightnum}} / {{errornum}} of {{count}}</h1>
+		<h1>Correct: {{rightnum}} / Error: {{errornum}} of {{count}}</h1>
 	</div> 
 
 	<div v-for="item in itemss">
 		<h2>{{ item.title }}</h2>
-		<code>{{ item.question }}</code>
+		<pre v-html="item.question"></pre>
 		<div class="buttondiv bt">
 		<!-- :class="{'has_choosed':choosedNum==index}" -->
 			<button type="button" class="btn btn-default btn-lg" :class="[{ 'btn-success' : ((index+1) == item.answer) && isThis == item.answer}, { 'btn-danger' : ((index+1) != item.answer) && errorArr.indexOf((index+1)) > -1 }]" @click="selected(index+1,$event)" v-for="(i ,index) in item.select">
@@ -14,11 +14,11 @@
 			</button>	
 		</div>
 
-		<p v-if="isselectright" class="bg-info"><b> Tip: </b> {{ item.notic }}</p>
+		<p v-if="isselectright" class="bg-info" v-html="item.notic"> </p>
 
-		<img src="../assets/consider.png" class="img-responsive center-block" v-if="imgStatus=='consider'">
-		<img src="../assets/right.png" class="img-responsive center-block" v-if="imgStatus=='right'">
-		<img src="../assets/error.png" class="img-responsive center-block" v-if="imgStatus=='error'">
+		<img src="../assets/consider.gif" class="img-responsive center-block" v-if="imgStatus=='consider'">
+		<img src="../assets/right.gif" class="img-responsive center-block" v-if="imgStatus=='right'">
+		<img src="../assets/error.gif" class="img-responsive center-block" v-if="imgStatus=='error'">
 
 		<div class="buttondiv">
 		<button type="button" class="btn btn-primary btn-lg fr" v-if="current<44 && showNext" @click="nextPage">Next test >></button> 
@@ -50,11 +50,9 @@ export default{
 		add: function(){
 			this.$store.commit('rightAdd')
 		},
-		selected: function(index,e){
-			console.log(e.target.className);
-			 
+		selected: function(index,e){ 
 			 this.errorArr+=index;
-			 console.log(this.errorArr);
+			 // console.log(this.errorArr);
 			// not selected any option
 			if(this.isselected==false){
 				if(index==this.answer){
@@ -85,11 +83,15 @@ export default{
 			}  
 		},
 		nextPage: function(){
-			this.nextpage();
-			this.changeErrorImg({text:'consider'});
-			this.changeShowNext();
-			this.isThis= 0;
-			this.errorArr = "";
+			if((this.rightnum + this.errornum) < this.count){
+				this.nextpage();
+				this.changeErrorImg({text:'consider'});
+				this.changeShowNext();
+				this.isThis= 0;
+				this.errorArr = "";				
+			}else{
+				this.$router.push({ path: '/result' });
+			}
 		}
 	}
 }
@@ -98,9 +100,10 @@ export default{
 <style>
 .toptic{float: right }
 h2{ margin-bottom: 30px }
-code{ font-size: 160% }
+pre{ font-size: 160%; color: #f92659 }
 .buttondiv{ margin: 30px 0 }
 .buttondiv button{ margin: 0 10px }
 p{ font-size: 25px; padding: 10px; border-radius: 5px; }
-.fr{ float: right }
+.fr{ float: right } 
+img{ width: 12rem }
 </style>

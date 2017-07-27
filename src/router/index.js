@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Item from '@/components/Item'
+import Result from '@/components/result'
 
 Vue.use(Router)
 
@@ -20,7 +21,7 @@ export default new Router({
     {
       path: '/result',
       name: 'Result',
-      component: Hello
+      component: Result
     },
     { path: '*', redirect: '/', hidden: true }
   ]
