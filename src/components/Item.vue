@@ -8,7 +8,10 @@
 		<h2>{{ item.title }}</h2>
 		<code>{{ item.question }}</code>
 		<div class="buttondiv bt">
-			<button type="button" :class="claname" @click="selected(index+1,$event)" v-for="(i ,index) in item.select">{{ i }}</button>	
+		<!-- :class="{'has_choosed':choosedNum==index}" -->
+			<button type="button" class="btn btn-default btn-lg" :class="[{ 'btn-success' : ((index+1) == item.answer) && isThis == item.answer}, { 'btn-danger' : ((index+1) != item.answer) && errorArr.indexOf((index+1)) > -1 }]" @click="selected(index+1,$event)" v-for="(i ,index) in item.select">
+			{{ i }} 
+			</button>	
 		</div>
 
 		<p v-if="isselectright" class="bg-info"><b> Tip: </b> {{ item.notic }}</p>
@@ -32,8 +35,9 @@ export default{
 	name: 'item',
 	data() {
 		return {
-			msg: 'test begin!',
-			claname: 'btn btn-default btn-lg'
+			msg: 'test begin!', 
+			isThis: 0 ,
+			errorArr: ''
 		}
 	},
 	store,
@@ -48,6 +52,9 @@ export default{
 		},
 		selected: function(index,e){
 			console.log(e.target.className);
+			 
+			 this.errorArr+=index;
+			 console.log(this.errorArr);
 			// not selected any option
 			if(this.isselected==false){
 				if(index==this.answer){
@@ -55,13 +62,12 @@ export default{
 					this.changeShowNext();
 					this.rightAdd();
 					this.changeSelected();
-					this.changeSelectright();
-					e.target.className="btn btn-default btn-lg btn-success";
+					this.changeSelectright(); 
+					this.isThis=index;
 				}else{
 					this.changeErrorImg({text:'error'});
 					this.errorAdd();
-					this.changeSelected();
-					e.target.className="btn btn-default btn-lg btn-danger";
+					this.changeSelected(); 
 				}
 			}else{
 				// not select right
@@ -69,14 +75,12 @@ export default{
 					if(index==this.answer){
 						this.changeShowNext();
 						this.changeSelected();
-						this.changeSelectright();	
-						e.target.className="btn btn-default btn-lg btn-success";
-					}else{
-						e.target.className="btn btn-default btn-lg btn-danger";
+						this.changeSelectright();	 
+						this.isThis=index;
+					}else{ 
 					}
 				}else{
-					this.changeSelected();
-					e.target.className="btn btn-default btn-lg btn-danger";
+					this.changeSelected(); 
 				}
 			}  
 		},
@@ -84,7 +88,8 @@ export default{
 			this.nextpage();
 			this.changeErrorImg({text:'consider'});
 			this.changeShowNext();
-			document.getElementsByClassName("bt").className="sdfsd"
+			this.isThis= 0;
+			this.errorArr = "";
 		}
 	}
 }
