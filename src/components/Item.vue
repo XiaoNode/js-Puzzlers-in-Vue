@@ -9,7 +9,9 @@
 		<pre v-html="item.question"></pre>
 		<div class="buttondiv bt">
 		<!-- :class="{'has_choosed':choosedNum==index}" -->
-			<button type="button" class="btn btn-default btn-lg" :class="[{ 'btn-success' : ((index+1) == item.answer) && isThis == item.answer}, { 'btn-danger' : ((index+1) != item.answer) && errorArr.indexOf((index+1)) > -1 }]" @click="selected(index+1,$event)" v-for="(i ,index) in item.select">
+			<button type="button" class="btn btn-default btn-lg" 
+			:class="[{ 'btn-success' : ((index+1) == item.answer) && isThis == item.answer}, { 'btn-danger' : ((index+1) != item.answer) && errorArr.indexOf((index+1)) > -1 }]" 
+			@click="selected(index+1,$event)" v-for="(i ,index) in item.select">
 			{{ i }} 
 			</button>	
 		</div>
@@ -99,7 +101,7 @@ export default{
 
 <style>
 .toptic{float: right; color: #F47A52;}
-h2{ margin-bottom: 30px }
+h2{ margin-bottom: 30px; margin-top: 5px }
 pre{ font-size: 160%; color: #f92659 }
 .buttondiv{ margin: 30px 0 }
 .buttondiv button{ margin: 0 10px }

@@ -2,13 +2,14 @@
 	<div>
 		<h1>your test result : </h1>
 		<div>
-			<h3>Correct sute: <b class="correctnum"> {{$store.state.rightnum}}</b></h3>
+			<h3>Correct sute: <b class="correctnum"> {{ $store.state.rightnum }}</b></h3>
 			
-			<h3>Error sute:<b class="errornum"> {{$store.state.errornum}}</b></h3>
+			<h3>Error sute:<b class="errornum"> {{ $store.state.errornum }}</b></h3>
 			<p>
 			  Wow ! The correct rate of your test is {{ result }}%
 			</p>
-			<button type="button" class="btn btn-default btn-lg fr" @click="goHome">Back to　Blog</button> <button type="button" class="btn btn-primary btn-lg fr" @click="goTest">Do again  \(≧▽≦)/</button> 
+			<button type="button" class="btn btn-default btn-lg fr" @click="goHome">Back to Blog</button> 
+			<button type="button" class="btn btn-primary btn-lg fr" @click="goTest">Do again  \(≧▽≦)/</button> 
 		</div>
 	</div>
 </template>
